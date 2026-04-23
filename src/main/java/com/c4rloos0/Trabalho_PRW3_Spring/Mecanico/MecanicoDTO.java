@@ -1,4 +1,11 @@
 package com.c4rloos0.Trabalho_PRW3_Spring.Mecanico;
 
-public record MecanicoDTO(String nome, int experiencia) {
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
+public record MecanicoDTO(
+        @NotBlank
+        String nome,
+        @Min(0)
+        int experiencia) {
 }
