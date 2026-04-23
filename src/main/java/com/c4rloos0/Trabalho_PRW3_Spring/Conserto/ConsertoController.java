@@ -6,10 +6,12 @@ import com.c4rloos0.Trabalho_PRW3_Spring.Veiculo.Veiculo;
 import com.c4rloos0.Trabalho_PRW3_Spring.Veiculo.VeiculoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("consertos")
@@ -20,6 +22,8 @@ public class ConsertoController {
     private MecanicoRepository mecanicoRepository;
     @Autowired
     private VeiculoRepository veiculoRepository;
+    @Autowired
+    private ConsertoService consertoService;
 
     @PostMapping
     @Transactional
@@ -29,4 +33,13 @@ public class ConsertoController {
         var conserto = new Conserto(dados,mecanico,veiculo);
         consertoRepository.save(conserto);
     }
+
+    @GetMapping
+    public Page<ConsertoDTO> listar(
+            @PageableDefault() Pageable pageable
+    ) {
+        return consertoRepository.findAll(pageable).map(ConsertoDTO::new);
+    }
+
+
 }

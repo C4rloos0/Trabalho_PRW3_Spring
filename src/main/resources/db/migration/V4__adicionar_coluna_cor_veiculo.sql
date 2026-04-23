@@ -1,0 +1,1 @@
+alter table veiculos add column cor varchar(20);
