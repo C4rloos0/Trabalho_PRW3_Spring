@@ -6,24 +6,23 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "veiculos")
-@Entity(name = "Veiculo")
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Embeddable
 public class Veiculo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String marca;
     private String modelo;
     private int ano;
+    private String cor;
 
-    public Veiculo(VeiculoDTO veiculo) {
-        this.marca = veiculo.marca();
-        this.modelo = veiculo.modelo();
-        this.ano = veiculo.ano();
+    public Veiculo(VeiculoDTO veiculoDTO) {
+        this.marca = veiculoDTO.marca();
+        this.modelo = veiculoDTO.modelo();
+        this.ano = veiculoDTO.ano();
+        this.cor = veiculoDTO.cor();
     }
+
+    public Veiculo() {}
+
+
 
 }

@@ -7,5 +7,5 @@ public record MecanicoDTO(
         @NotBlank
         String nome,
         @Min(0)
-        int experiencia) {
+        int anos_experiencia) {
 }

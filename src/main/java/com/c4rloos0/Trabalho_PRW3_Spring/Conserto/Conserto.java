@@ -26,18 +26,20 @@ public class Conserto {
     private LocalDate entrada;
     private LocalDate saida;
 
-    @ManyToOne
-    @JoinColumn(name = "id_mecanico")
-    private Mecanico mecanico;
-    @ManyToOne
-    @JoinColumn(name = "id_veiculo")
+    @Embedded
     private Veiculo veiculo;
 
-    public Conserto(ConsertoDTO conserto, Mecanico mecanico, Veiculo veiculo) {
+    @Embedded
+    private Mecanico mecanico;
+
+
+
+    public Conserto(ConsertoDTO conserto) {
         this.entrada = conserto.entrada();
         this.saida = conserto.saida();
-        this.mecanico = mecanico;
-        this.veiculo = veiculo;
+        this.veiculo = new Veiculo(conserto.veiculo());
+        this.mecanico = new Mecanico(conserto.mecanico());
     }
+
 
 }

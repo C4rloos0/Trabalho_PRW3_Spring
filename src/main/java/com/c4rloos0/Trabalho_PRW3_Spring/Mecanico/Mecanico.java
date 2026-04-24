@@ -7,22 +7,19 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "mecanicos")
-@Entity(name = "Mecanico")
+
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Embeddable
 public class Mecanico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String nome;
-    private int experiencia;
+    private int anos_experiencia;
 
     public Mecanico(MecanicoDTO mecanico) {
         this.nome = mecanico.nome();
-        this.experiencia = mecanico.experiencia();
+        this.anos_experiencia = mecanico.anos_experiencia();
     }
+
+    public Mecanico() {}
+
 
 }

@@ -1,0 +1,1 @@
+alter table consertos add column cor varchar(50);
