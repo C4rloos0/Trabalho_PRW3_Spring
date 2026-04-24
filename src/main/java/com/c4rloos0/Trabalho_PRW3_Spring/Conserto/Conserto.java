@@ -7,9 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Table(name = "consertos")
 @Entity(name = "Conserto")
@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class Conserto {
     @Id
     @Getter
@@ -35,8 +34,8 @@ public class Conserto {
 
 
     public Conserto(ConsertoDTO conserto) {
-        this.entrada = conserto.entrada();
-        this.saida = conserto.saida();
+        this.entrada = LocalDate.parse(conserto.entrada(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.saida = LocalDate.parse(conserto.saida(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.veiculo = new Veiculo(conserto.veiculo());
         this.mecanico = new Mecanico(conserto.mecanico());
     }
