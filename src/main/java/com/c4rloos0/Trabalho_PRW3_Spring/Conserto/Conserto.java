@@ -1,14 +1,13 @@
 package com.c4rloos0.Trabalho_PRW3_Spring.Conserto;
 
 import com.c4rloos0.Trabalho_PRW3_Spring.Mecanico.Mecanico;
-import com.c4rloos0.Trabalho_PRW3_Spring.Mecanico.MecanicoDTO;
 import com.c4rloos0.Trabalho_PRW3_Spring.Veiculo.Veiculo;
-import com.c4rloos0.Trabalho_PRW3_Spring.Veiculo.VeiculoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 import java.time.LocalDate;
 
@@ -18,6 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class Conserto {
     @Id
     @Getter
